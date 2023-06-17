@@ -4,7 +4,7 @@ class Mytranslation extends Translations {
   @override
   // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
-        "ar": {'1': 'Homepage'},
-        "en": {'1': 'الصفحة الرئيسية'}
+        "en": {'1': 'Homepage'},
+        "ar": {'1': 'الصفحة الرئيسية'}
       };
 }

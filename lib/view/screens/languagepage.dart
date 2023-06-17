@@ -1,10 +1,12 @@
 import 'package:ecommerceapp/core/constants/colors.dart';
+import 'package:ecommerceapp/core/constants/route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/localization/changelocale.dart';
 import '../widget/auth/customlanguagebutton.dart';
 
-class LanguagePage extends StatelessWidget {
+class LanguagePage extends GetView<Localcontroller> {
   const LanguagePage({super.key});
 
   @override
@@ -26,11 +28,17 @@ class LanguagePage extends StatelessWidget {
           ),
           CustomLanhuageButton(
             buttontext: 'ar',
-            onPressed: () {},
+            onPressed: () {
+              controller.changelocale('ar');
+              Get.toNamed(AppRoutes.onboarding);
+            },
           ),
           CustomLanhuageButton(
             buttontext: 'en',
-            onPressed: () {},
+            onPressed: () {
+              controller.changelocale('en');
+              Get.toNamed(AppRoutes.onboarding);
+            },
           )
         ],
       )),

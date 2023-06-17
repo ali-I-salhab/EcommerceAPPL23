@@ -2,10 +2,12 @@
 import 'package:ecommerceapp/core/constants/colors.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/routes.dart';
+import 'package:ecommerceapp/view/screens/languagepage.dart';
 import 'package:ecommerceapp/view/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'core/localization/changelocale.dart';
 import 'core/localization/translation.dart';
 
 void main() async {
@@ -20,11 +22,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Localcontroller controller = Get.put(Localcontroller());
     return GetMaterialApp(
+      locale: controller.languageofdevice,
       translations: Mytranslation(),
       routes: routes,
       debugShowCheckedModeBanner: false,
-      home: const Onboarding(),
+      home: const LanguagePage(),
       theme: ThemeData(
           textTheme: const TextTheme(
               bodyMedium: TextStyle(
