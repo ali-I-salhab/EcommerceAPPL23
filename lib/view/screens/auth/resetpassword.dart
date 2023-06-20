@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/controller/auth/resetpasswordcontroller.dart';
 import 'package:ecommerceapp/core/constants/colors.dart';
+import 'package:ecommerceapp/core/functions/validinput.dart';
 import 'package:ecommerceapp/view/widget/auth/customauthbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,13 +44,30 @@ class ResetPasswrd extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(
-              height: 15,
+              height: 20,
             ),
 
-            const CustomTextFormField(
-              hint: 'Enter Your password',
+            CustomTextFormField(
+              isnumeric: false,
+              valid: (val) {
+                return validate(val.toString(), 10, 100, 'password');
+              },
+              hint: '13'.tr,
               icon: Icons.lock_outlined,
-              label: 'new password',
+              label: '35'.tr,
+              mycontroller: null,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomTextFormField(
+              isnumeric: false,
+              valid: (val) {
+                return validate(val.toString(), 10, 100, 'password');
+              },
+              hint: '34'.tr,
+              icon: Icons.lock_outlined,
+              label: '35'.tr,
               mycontroller: null,
             ),
             const SizedBox(

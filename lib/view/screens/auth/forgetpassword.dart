@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../controller/auth/forgetpassword.dart';
 import '../../../controller/auth/signupcontroller.dart';
+import '../../../core/functions/validinput.dart';
 import '../../widget/auth/customtextformfield.dart';
 import '../../widget/auth/logo.dart';
 import '../../widget/auth/textsignup.dart';
@@ -46,6 +47,10 @@ class Forgetpassword extends StatelessWidget {
             ),
 
             CustomTextFormField(
+              isnumeric: false,
+              valid: (val) {
+                return validate(val.toString(), 10, 100, 'email');
+              },
               hint: 'Enter Your Email',
               icon: Icons.email_outlined,
               label: 'Email',

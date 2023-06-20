@@ -4,6 +4,8 @@ import 'package:ecommerceapp/view/widget/auth/customauthbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/functions/alertexitapp.dart';
+import '../../../core/functions/validinput.dart';
 import '../../widget/auth/customtextformfield.dart';
 import '../../widget/auth/logo.dart';
 import '../../widget/auth/textsignup.dart';
@@ -13,81 +15,104 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(LogincontrollerImp());
+    LogincontrollerImp controller = Get.put(LogincontrollerImp());
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
         backgroundColor: Colors.white,
-        shadowColor: Colors.white,
-        title: Text(
-          'Login Page',
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall!
-              .copyWith(color: AppColors.black, fontFamily: 'playfair'),
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          shadowColor: Colors.white,
+          title: Text(
+            'Login Page',
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .copyWith(color: AppColors.black, fontFamily: 'playfair'),
+          ),
         ),
-      ),
-      body: Container(
-        margin: const EdgeInsets.all(35),
-        child: ListView(
-          children: [
-            const LogoAuth(),
-            Text(
-              'Welcome Back',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            CustomTextFormField(
-              hint: 'Enter Your Email',
-              icon: Icons.email_outlined,
-              label: 'Email',
-              mycontroller: controller.email,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomTextFormField(
-              hint: 'Enter Youe Password',
-              icon: Icons.lock_outline,
-              label: 'password',
-              mycontroller: controller.password,
-            ),
-            InkWell(
-              child: Container(
-                margin: EdgeInsets.only(top: 20),
-                child: const Text(
-                  'Forget Password',
-                  textAlign: TextAlign.end,
-                  style: TextStyle(color: AppColors.primarycolor),
+        body: WillPopScope(
+            onWillPop: alertexitpp,
+            child: Container(
+              margin: EdgeInsets.all(35),
+              child: Form(
+                key: controller.formstatelogin,
+                child: ListView(
+                  children: [
+                    const LogoAuth(),
+                    Text(
+                      'Welcome Back',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    CustomTextFormField(
+                      isnumeric: false,
+                      valid: (val) {
+                        return validate(val.toString(), 10, 100, 'email');
+                      },
+                      hint: 'Enter Your Email',
+                      icon: Icons.email_outlined,
+                      label: 'Email',
+                      mycontroller: controller.email,
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    GetBuilder<LogincontrollerImp>(
+                      builder: (context) => CustomTextFormField(
+                        isnumeric: false,
+                        ontap: () {
+                          print('icon tapped');
+                          controller.showpassword();
+                        },
+                        ispasswordfield: true,
+                        valid: (val) {
+                          return validate(val.toString(), 10, 100, 'password');
+                        },
+                        hint: 'Enter Youe Password',
+                        icon: controller.passwordstatus
+                            ? Icons.lock_outlined
+                            : Icons.no_encryption_outlined,
+                        label: 'password',
+                        mycontroller: controller.password,
+                      ),
+                    ),
+                    InkWell(
+                      child: Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: Text(
+                          '14'.tr,
+                          textAlign: TextAlign.end,
+                          style: TextStyle(color: AppColors.primarycolor),
+                        ),
+                      ),
+                      onTap: () {
+                        controller.gotoforgetpasword();
+                      },
+                    ),
+                    CustomAuthButton(
+                      text: '15'.tr,
+                      onPressed: () {
+                        controller.login();
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextSignup(
+                      ontap: () {
+                        controller.gotosignuppage();
+                      },
+                      firsttext: '16'.tr,
+                      Secondtext: '17'.tr,
+                    )
+                  ],
                 ),
               ),
-              onTap: () {
-                controller.gotoforgetpasword();
-              },
-            ),
-            CustomAuthButton(
-              text: 'Login',
-              onPressed: () {},
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextSignup(
-              ontap: () {
-                controller.gotosignuppage();
-              },
-              firsttext: 'Dont Have an account  ',
-              Secondtext: 'SignUp',
-            )
-          ],
-        ),
-      ),
-    );
+            )));
   }
 }

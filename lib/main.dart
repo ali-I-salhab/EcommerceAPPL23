@@ -25,23 +25,12 @@ class MyApp extends StatelessWidget {
     Localcontroller controller = Get.put(Localcontroller());
     return GetMaterialApp(
       locale: controller.languageofdevice,
-      translations: Mytranslation(),
-      routes: routes,
+      translations: MyTranslation(),
+      // routes: routes,
+      getPages: getPages,
       debugShowCheckedModeBanner: false,
-      home: const LanguagePage(),
-      theme: ThemeData(
-          textTheme: const TextTheme(
-              bodyMedium: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'Playfair',
-                  fontWeight: FontWeight.bold,
-                  wordSpacing: 2,
-                  height: 1.5),
-              displayLarge: TextStyle(
-                  fontSize: 25,
-                  fontFamily: 'Playfair',
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.black))),
+      // home: const LanguagePage(),
+      theme: controller.appthem,
     );
   }
 }
