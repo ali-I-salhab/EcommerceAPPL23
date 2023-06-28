@@ -1,4 +1,5 @@
 import 'package:ecommerceapp/core/middleware/mymiddleware.dart';
+import 'package:ecommerceapp/test.dart';
 import 'package:ecommerceapp/view/screens/auth/forgetpassword.dart';
 import 'package:ecommerceapp/view/screens/auth/resetpassword.dart';
 import 'package:ecommerceapp/view/screens/auth/successsignup.dart';
@@ -23,9 +24,9 @@ Map<String, Widget Function(BuildContext)> routes = {
 };
 List<GetPage<dynamic>>? getPages = [
   GetPage(
-      name: '/',
-      page: () => const LanguagePage(),
-      middlewares: [MyMiddleware()]),
+    name: '/', page: () => const Testfun(),
+    //  middlewares: [MyMiddleware()]
+  ),
   GetPage(
     name: AppRoutes.login,
     page: () => const Login(),
