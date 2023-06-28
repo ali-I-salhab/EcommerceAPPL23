@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
+import '../../core/class/statusrequest.dart';
+import '../../core/functions/handlingdata.dart';
+import '../../data/datasource/remote/auth/signup_data.dart';
+
 abstract class Signupcontroller extends GetxController {
   signup();
   gotosignin();
@@ -15,9 +19,16 @@ class SignupcontrollerImp extends Signupcontroller {
   late TextEditingController password;
   late TextEditingController phone;
   late TextEditingController username;
+  SignupData signupdata = SignupData(Get.find());
+  List data = [];
+  Statusrequest? statusrequest;
   @override
   gotosignin() {
     Get.offNamed(AppRoutes.login);
+  }
+
+  gotoverifycode() {
+    Get.toNamed(AppRoutes.verifycode, arguments: {'email': email.text});
   }
 
   gotosuccesssignup() {
@@ -25,14 +36,33 @@ class SignupcontrollerImp extends Signupcontroller {
   }
 
   @override
-  signup() {
+  signup() async {
     if (formstatesignup.currentState!.validate()) {
-      print('valid');
-      gotosuccesssignup();
+      statusrequest = Statusrequest.loading;
+      update();
+      var response = await signupdata.postdata(
+          username.text.toString(),
+          phone.text.toString(),
+          email.text.toString(),
+          password.text.toString());
 
-      Get.delete<SignupcontrollerImp>();
+      statusrequest = handlingdata(response);
+
+      if (statusrequest == Statusrequest.success) {
+        if (response['status'] == 'success') {
+          // data.addAll(response['data']);
+          Get.toNamed(AppRoutes.verifycode, arguments: {'email': email.text});
+        } else {
+          Get.defaultDialog(
+              title: "Error ", middleText: "phone or email is existed");
+          //here every thing ok but no data where pounded
+          statusrequest = Statusrequest.failure;
+        }
+      }
+
+      update();
     } else {
-      print('not valid ');
+//not valid data
     }
   }
 
@@ -57,3 +87,34 @@ class SignupcontrollerImp extends Signupcontroller {
     super.dispose();
   }
 }
+// import 'package:ecommerceapp/core/class/statusrequest.dart';
+// import 'package:ecommerceapp/data/datasource/remote/test_data.dart';
+// import 'package:get/get.dart';
+
+// import '../core/functions/handlingdata.dart';
+
+// class Testcontroller extends GetxController {
+//   TestData testdata = TestData(Get.find());
+//   List data = [];
+//   late Statusrequest statusrequest;
+//   getdata() async {
+//     statusrequest = Statusrequest.loading;
+//     var response = await testdata.getdata();
+
+//     statusrequest = handlingdata(response);
+//     if (statusrequest == Statusrequest.success) {
+//       if (response['status'] == 'success') {
+//         data.addAll(response['data']);
+//       } else {
+//         statusrequest = Statusrequest.failure;
+//       }
+//     }
+//     update();
+//   }
+
+//   @override
+//   void onInit() {
+//     getdata();
+//     super.onInit();
+//   }
+// }

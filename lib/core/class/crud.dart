@@ -12,9 +12,14 @@ class Crud {
       if (await checkinternetstatus()) {
         // internet connection
         var response = await http.post(Uri.parse(url), body: data);
+
         if (response.statusCode == 200 || response.statusCode == 201) {
           //get response from server
+
+          print('----------------success---------------');
+          print(response.body);
           Map responsebody = jsonDecode(response.body);
+
           return Right(responsebody);
         } else {
           //no response from server
@@ -24,8 +29,8 @@ class Crud {
         //no internet connection
         return const Left(Statusrequest.offlinefailure);
       }
-    } catch (_) {
-      return const Left(Statusrequest.serverfailure);
+    } catch (e) {
+      return const Left(Statusrequest.serverexception);
     }
   }
 }

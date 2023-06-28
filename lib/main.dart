@@ -1,12 +1,10 @@
 // import 'package:ecommerceapp/testgetx%20/home.dart';
-import 'package:ecommerceapp/core/constants/colors.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/routes.dart';
-import 'package:ecommerceapp/view/screens/languagepage.dart';
-import 'package:ecommerceapp/view/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'bindings/initialbinding.dart';
 import 'core/localization/changelocale.dart';
 import 'core/localization/translation.dart';
 
@@ -28,6 +26,7 @@ class MyApp extends StatelessWidget {
       translations: MyTranslation(),
       // routes: routes,
       getPages: getPages,
+      initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
       // home: const LanguagePage(),
       theme: controller.appthem,

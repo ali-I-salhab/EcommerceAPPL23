@@ -30,6 +30,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     LogincontrollerImp controller = Get.put(LogincontrollerImp());
     return TextFormField(
+      controller: mycontroller,
       obscureText: controller.passwordstatus && ispasswordfield ? true : false,
       keyboardType: isnumeric
           ? const TextInputType.numberWithOptions(decimal: true)

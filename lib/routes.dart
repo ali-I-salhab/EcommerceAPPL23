@@ -1,13 +1,15 @@
 import 'package:ecommerceapp/core/middleware/mymiddleware.dart';
 import 'package:ecommerceapp/test.dart';
-import 'package:ecommerceapp/view/screens/auth/forgetpassword.dart';
-import 'package:ecommerceapp/view/screens/auth/resetpassword.dart';
+import 'package:ecommerceapp/view/screens/forgetpassword/forgetpassword.dart';
+import 'package:ecommerceapp/view/screens/forgetpassword/resetpassword.dart';
 import 'package:ecommerceapp/view/screens/auth/successsignup.dart';
-import 'package:ecommerceapp/view/screens/auth/verifycode.dart';
+import 'package:ecommerceapp/view/screens/forgetpassword/verifycode.dart';
+import 'package:ecommerceapp/view/screens/homepage.dart';
 import 'package:ecommerceapp/view/screens/languagepage.dart';
 import 'package:ecommerceapp/view/screens/onboarding.dart';
 import 'package:ecommerceapp/view/screens/auth/login.dart';
 import 'package:ecommerceapp/view/screens/auth/signup.dart';
+import 'package:ecommerceapp/view/testview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,14 +26,15 @@ Map<String, Widget Function(BuildContext)> routes = {
 };
 List<GetPage<dynamic>>? getPages = [
   GetPage(
-    name: '/', page: () => const Testfun(),
-    //  middlewares: [MyMiddleware()]
-  ),
+      name: '/',
+      page: () => const LanguagePage(),
+      middlewares: [MyMiddleware()]),
   GetPage(
     name: AppRoutes.login,
     page: () => const Login(),
   ),
   GetPage(name: AppRoutes.onboarding, page: () => const Onboarding()),
+  GetPage(name: AppRoutes.homepage, page: () => const HomePage()),
   GetPage(name: AppRoutes.signup, page: () => const Signup()),
   GetPage(name: AppRoutes.forgetpassword, page: () => const Forgetpassword()),
   GetPage(name: AppRoutes.verifycode, page: () => const Verifycode()),

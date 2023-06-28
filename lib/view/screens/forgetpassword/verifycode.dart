@@ -1,11 +1,11 @@
-import 'package:ecommerceapp/controller/auth/resetpasswordcontroller.dart';
+import 'package:ecommerceapp/controller/forgetpassword/resetpasswordcontroller.dart';
 import 'package:ecommerceapp/controller/auth/verifycodecontroller.dart';
 import 'package:ecommerceapp/core/constants/colors.dart';
 import 'package:ecommerceapp/view/widget/auth/customauthbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/auth/forgetpassword.dart';
+import '../../../controller/forgetpassword/forgetpasswordcontroller.dart';
 import '../../../controller/auth/signupcontroller.dart';
 import '../../widget/auth/customtextformfield.dart';
 import '../../widget/auth/logo.dart';
@@ -57,13 +57,14 @@ class Verifycode extends StatelessWidget {
                 fieldWidth: 50,
                 numberOfFields: 4,
                 onSubmit: (String code) {
-                  if (code == '1111') {
-                    controller.gotoresetpage();
-                  } else {
-                    Get.dialog(AlertDialog(
-                      title: Text('Wrong code'),
-                    ));
+                  {
+                    controller.gotoresetpassword(code);
                   }
+                  // } else {
+                  //   Get.dialog(AlertDialog(
+                  //     title: Text('Wrong code'),
+                  //   ));
+                  // }
                 }),
 
             const SizedBox(

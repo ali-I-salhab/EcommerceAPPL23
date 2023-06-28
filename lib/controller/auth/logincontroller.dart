@@ -2,6 +2,10 @@ import 'package:ecommerceapp/core/constants/route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/class/statusrequest.dart';
+import '../../core/functions/handlingdata.dart';
+import '../../data/datasource/remote/auth/login_data.dart';
+
 abstract class Logincontroller extends GetxController {
   gotosignuppage();
   gotoforgetpasword();
@@ -13,12 +17,31 @@ class LogincontrollerImp extends Logincontroller {
   late TextEditingController email;
   bool passwordstatus = true;
   late TextEditingController password;
+  Statusrequest statusrequest = Statusrequest.none;
   GlobalKey<FormState> formstatelogin = GlobalKey<FormState>();
+  LoginData logindata = LoginData(Get.find());
   @override
-  login() {
-    print('hello from login controller ');
+  login() async {
     if (formstatelogin.currentState!.validate()) {
-      print('valid');
+      statusrequest = Statusrequest.loading;
+      update();
+      var response = await logindata.postdata(
+          email.text.toString(), password.text.toString());
+
+      statusrequest = handlingdata(response);
+
+      if (statusrequest == Statusrequest.success) {
+        if (response['status'] == 'success') {
+          Get.offAllNamed(AppRoutes.homepage);
+        } else {
+          Get.defaultDialog(
+              title: "Error ", middleText: "email or password not valid");
+          //here every thing ok but no data where pounded
+          // statusrequest = Statusrequest.failure;
+        }
+      }
+
+      update();
     } else {
       print('not valid');
     }

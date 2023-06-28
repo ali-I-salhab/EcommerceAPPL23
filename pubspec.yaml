@@ -36,6 +36,7 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   get: ^4.6.5
   http: ^0.13.5
+  lottie: ^2.3.2
   shared_preferences: ^2.1.2
 
 dev_dependencies:
@@ -60,6 +61,10 @@ flutter:
     - assets/images/onboardingthree.png
     - assets/images/logo.png
     - assets/images/logoapp.png
+    - assets/lotties/loading.json
+    - assets/lotties/nointernetconnection.json
+    - assets/lotties/serverfailure.json
+    - assets/lotties/nodata.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
