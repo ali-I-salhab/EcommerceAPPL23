@@ -21,7 +21,7 @@ class OnboardingControllerImp extends OnboardingController {
   next() {
     currentpage++;
     if (currentpage > onboardinglist.length - 1) {
-      servicescontroller.shared.setString('onboarding', '1');
+      servicescontroller.shared.setString('step', '1');
       Get.offAllNamed(AppRoutes.login);
     }
     pagecontroller.animateToPage(currentpage,

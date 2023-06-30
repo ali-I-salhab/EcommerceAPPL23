@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../../core/class/statusrequest.dart';
+import '../../core/constants/colors.dart';
 import '../../core/functions/handlingdata.dart';
 import '../../data/datasource/remote/auth/signup_data.dart';
 
@@ -28,7 +29,7 @@ class SignupcontrollerImp extends Signupcontroller {
   }
 
   gotoverifycode() {
-    Get.toNamed(AppRoutes.verifycode, arguments: {'email': email.text});
+    // Get.toNamed(AppRoutes.verifycode, arguments: {'email': email.text});
   }
 
   gotosuccesssignup() {
@@ -51,7 +52,11 @@ class SignupcontrollerImp extends Signupcontroller {
       if (statusrequest == Statusrequest.success) {
         if (response['status'] == 'success') {
           // data.addAll(response['data']);
-          Get.toNamed(AppRoutes.verifycode, arguments: {'email': email.text});
+          Get.offNamed(AppRoutes.login, arguments: {'email': email.text});
+          Get.snackbar('success', 'successfully registered try to login',
+              dismissDirection: DismissDirection.horizontal,
+              duration: Duration(seconds: 3),
+              backgroundColor: AppColors.primarycolor);
         } else {
           Get.defaultDialog(
               title: "Error ", middleText: "phone or email is existed");

@@ -33,96 +33,100 @@ class Login extends StatelessWidget {
                 .copyWith(color: AppColors.black, fontFamily: 'playfair'),
           ),
         ),
-        body: GetBuilder<LogincontrollerImp>(
-          builder: (controller) => Handlingdataview(
-              statusrequest: controller.statusrequest,
-              widget: Container(
-                child: WillPopScope(
-                    onWillPop: alertexitpp,
-                    child: Container(
-                      margin: EdgeInsets.all(35),
-                      child: Form(
-                        key: controller.formstatelogin,
-                        child: ListView(
-                          children: [
-                            const LogoAuth(),
-                            Text(
-                              'Welcome Back',
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headlineMedium,
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            CustomTextFormField(
-                              isnumeric: false,
-                              valid: (val) {
-                                return validate(
-                                    val.toString(), 10, 100, 'email');
-                              },
-                              hint: 'Enter Your Email',
-                              icon: Icons.email_outlined,
-                              label: 'Email',
-                              mycontroller: controller.email,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            GetBuilder<LogincontrollerImp>(
-                              builder: (context) => CustomTextFormField(
+        body: WillPopScope(
+          onWillPop: alertexitpp,
+          child: GetBuilder<LogincontrollerImp>(
+            builder: (controller) => Handlingdataview(
+                statusrequest: controller.statusrequest,
+                widget: Container(
+                  child: WillPopScope(
+                      onWillPop: alertexitpp,
+                      child: Container(
+                        margin: EdgeInsets.all(35),
+                        child: Form(
+                          key: controller.formstatelogin,
+                          child: ListView(
+                            children: [
+                              const LogoAuth(),
+                              Text(
+                                'Welcome Back',
+                                textAlign: TextAlign.center,
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              CustomTextFormField(
                                 isnumeric: false,
-                                ontap: () {
-                                  print('icon tapped');
-                                  controller.showpassword();
-                                },
-                                ispasswordfield: true,
                                 valid: (val) {
                                   return validate(
-                                      val.toString(), 5, 100, 'password');
+                                      val.toString(), 10, 100, 'email');
                                 },
-                                hint: 'Enter Youe Password',
-                                icon: controller.passwordstatus
-                                    ? Icons.lock_outlined
-                                    : Icons.no_encryption_outlined,
-                                label: 'password',
-                                mycontroller: controller.password,
+                                hint: 'Enter Your Email',
+                                icon: Icons.email_outlined,
+                                label: 'Email',
+                                mycontroller: controller.email,
                               ),
-                            ),
-                            InkWell(
-                              child: Container(
-                                margin: EdgeInsets.only(top: 20),
-                                child: Text(
-                                  '14'.tr,
-                                  textAlign: TextAlign.end,
-                                  style:
-                                      TextStyle(color: AppColors.primarycolor),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              GetBuilder<LogincontrollerImp>(
+                                builder: (context) => CustomTextFormField(
+                                  isnumeric: false,
+                                  ontap: () {
+                                    print('icon tapped');
+                                    controller.showpassword();
+                                  },
+                                  ispasswordfield: true,
+                                  valid: (val) {
+                                    return validate(
+                                        val.toString(), 5, 100, 'password');
+                                  },
+                                  hint: 'Enter Youe Password',
+                                  icon: controller.passwordstatus
+                                      ? Icons.lock_outlined
+                                      : Icons.no_encryption_outlined,
+                                  label: 'password',
+                                  mycontroller: controller.password,
                                 ),
                               ),
-                              onTap: () {
-                                controller.gotoforgetpasword();
-                              },
-                            ),
-                            CustomAuthButton(
-                              text: '15'.tr,
-                              onPressed: () {
-                                controller.login();
-                              },
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            TextSignup(
-                              ontap: () {
-                                controller.gotosignuppage();
-                              },
-                              firsttext: '16'.tr,
-                              Secondtext: '17'.tr,
-                            )
-                          ],
+                              InkWell(
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 20),
+                                  child: Text(
+                                    '14'.tr,
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(
+                                        color: AppColors.primarycolor),
+                                  ),
+                                ),
+                                onTap: () {
+                                  controller.gotoforgetpasword();
+                                },
+                              ),
+                              CustomAuthButton(
+                                text: '15'.tr,
+                                onPressed: () {
+                                  controller.login();
+                                },
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              TextSignup(
+                                ontap: () {
+                                  controller.gotosignuppage();
+                                },
+                                firsttext: '16'.tr,
+                                Secondtext: '17'.tr,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    )),
-              )),
+                      )),
+                )),
+          ),
         ));
   }
 }

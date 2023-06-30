@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/core/constants/colors.dart';
 import 'package:ecommerceapp/core/constants/route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,16 +15,18 @@ class ResetpasswordcontrollerImp extends Resetpasswordcontroller {
   ResetPasswordData resetpassworddata = ResetPasswordData(Get.find());
   late TextEditingController firstpassword;
   late TextEditingController secondpassword;
-  GlobalKey<FormState> formstate = GlobalKey();
+  GlobalKey<FormState> formstate = GlobalKey<FormState>();
   Statusrequest statusrequest = Statusrequest.none;
   late String email;
 
   @override
   changepassword() async {
+    print("-------------1----------------");
     if (formstate.currentState!.validate()) {
       if (firstpassword.text == secondpassword.text) {
         statusrequest = Statusrequest.loading;
         update();
+        print(email);
         var response =
             await resetpassworddata.postdata(email, firstpassword.text);
 
@@ -31,7 +34,12 @@ class ResetpasswordcontrollerImp extends Resetpasswordcontroller {
 
         if (statusrequest == Statusrequest.success) {
           if (response['status'] == 'success') {
-            Get.toNamed(AppRoutes.login);
+            Get.offAllNamed(AppRoutes.login);
+            Get.snackbar(
+                'success', 'successfully password changed try to login',
+                dismissDirection: DismissDirection.horizontal,
+                duration: Duration(seconds: 3),
+                backgroundColor: AppColors.primarycolor);
           } else {
             Get.defaultDialog(title: "Error", middleText: "passsword ");
             //here every thing ok but no data where pounded
@@ -53,5 +61,13 @@ class ResetpasswordcontrollerImp extends Resetpasswordcontroller {
     firstpassword = TextEditingController();
     secondpassword = TextEditingController();
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    firstpassword.dispose();
+    secondpassword.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 }

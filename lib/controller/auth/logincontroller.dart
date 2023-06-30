@@ -1,7 +1,8 @@
 import 'package:ecommerceapp/core/constants/route.dart';
+import 'package:ecommerceapp/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 import '../../core/class/statusrequest.dart';
 import '../../core/functions/handlingdata.dart';
 import '../../data/datasource/remote/auth/login_data.dart';
@@ -20,6 +21,8 @@ class LogincontrollerImp extends Logincontroller {
   Statusrequest statusrequest = Statusrequest.none;
   GlobalKey<FormState> formstatelogin = GlobalKey<FormState>();
   LoginData logindata = LoginData(Get.find());
+  List data = [];
+  MyServices myServices = Get.find();
   @override
   login() async {
     if (formstatelogin.currentState!.validate()) {
@@ -32,6 +35,14 @@ class LogincontrollerImp extends Logincontroller {
 
       if (statusrequest == Statusrequest.success) {
         if (response['status'] == 'success') {
+          // data.addAll(response['data']);
+          myServices.shared.setString('id', response['data']['user_id']);
+          myServices.shared.setString('email', response['data']['user_email']);
+          myServices.shared.setString('phone', response['data']['user_phone']);
+          myServices.shared
+              .setString('username', response['data']['user_name']);
+          myServices.shared.setString('step', '2');
+
           Get.offAllNamed(AppRoutes.homepage);
         } else {
           Get.defaultDialog(
@@ -54,7 +65,11 @@ class LogincontrollerImp extends Logincontroller {
 
   @override
   void onInit() {
-    print('init controller of login page');
+    FirebaseMessaging.instance.getToken().then((value) {
+      print(value);
+      String? token = value;
+    });
+
     email = TextEditingController();
 
     password = TextEditingController();
@@ -70,7 +85,7 @@ class LogincontrollerImp extends Logincontroller {
 
   @override
   gotoforgetpasword() {
-    Get.toNamed(AppRoutes.forgetpassword);
+    Get.offNamed(AppRoutes.forgetpassword);
   }
 
   @override

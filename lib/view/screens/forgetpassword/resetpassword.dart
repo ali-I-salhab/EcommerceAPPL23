@@ -12,6 +12,8 @@ class ResetPasswrd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ResetpasswordcontrollerImp controller =
+        Get.put(ResetpasswordcontrollerImp());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -52,7 +54,7 @@ class ResetPasswrd extends StatelessWidget {
                   hint: '13'.tr,
                   icon: Icons.lock_outlined,
                   label: '35'.tr,
-                  mycontroller: controller.secondpassword,
+                  mycontroller: controller.firstpassword,
                 ),
                 const SizedBox(
                   height: 20,

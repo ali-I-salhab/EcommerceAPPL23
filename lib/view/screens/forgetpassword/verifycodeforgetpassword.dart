@@ -7,17 +7,19 @@ import 'package:get/get.dart';
 
 import '../../../controller/forgetpassword/forgetpasswordcontroller.dart';
 import '../../../controller/auth/signupcontroller.dart';
+import '../../../controller/forgetpassword/verifycodeforgetpasswordcontroller.dart';
 import '../../widget/auth/customtextformfield.dart';
 import '../../widget/auth/logo.dart';
 import '../../widget/auth/textsignup.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
-class Verifycode extends StatelessWidget {
-  const Verifycode({super.key});
+class VerifycodeForgetpassword extends StatelessWidget {
+  const VerifycodeForgetpassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    VerifycodecontrollerImp controller = Get.put(VerifycodecontrollerImp());
+    VerifycodeforgetpasswordImp controller =
+        Get.put(VerifycodeforgetpasswordImp());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

@@ -17,7 +17,7 @@ class Crud {
           //get response from server
 
           print('----------------success---------------');
-          print(response.body);
+          print(data);
           Map responsebody = jsonDecode(response.body);
 
           return Right(responsebody);
