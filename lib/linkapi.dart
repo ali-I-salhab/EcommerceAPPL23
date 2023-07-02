@@ -19,7 +19,8 @@ class Applink {
   static const String home = "$server/home.php";
 
   //----------------------images----------------------
-  static const String imagestatic =
-      "https://alisalhab.000webhostapp.com/ecommerceapp_backend/upload";
-  static const String categories = "$imagestatic/categories";
+  static const String serverimage =
+      "https://alisalhab.000webhostapp.com/ecommerceapp_backend";
+  static const String categories = "$serverimage/upload/categories";
+  static const String items = "$serverimage/upload/items";
 }

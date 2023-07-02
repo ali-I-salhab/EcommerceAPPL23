@@ -15,7 +15,14 @@ class HomepageControllerImp extends HomepageController {
   late MyServices services = Get.find();
   Statusrequest statusrequest = Statusrequest.none;
   List categories = [];
+  List items = [];
   HomeData homedata = HomeData(Get.find());
+  void onInit() {
+    getdata();
+    name = services.shared.getString('email')!;
+    super.onInit();
+  }
+
   String initiadata() {
     return name;
   }
@@ -25,28 +32,22 @@ class HomepageControllerImp extends HomepageController {
     statusrequest = Statusrequest.loading;
     update();
     var response = await homedata.postdata();
+    print("=================response $response");
+    update();
 
     statusrequest = handlingdata(response);
 
     if (statusrequest == Statusrequest.success) {
       if (response['status'] == 'success') {
         categories.addAll(response['categories']);
-        print("categories---------------------");
-        print(categories);
+        items.addAll(response['items']);
       } else {
         Get.defaultDialog(
             title: "Error",
             middleText: "email not registered ... try to login ");
         //here every thing ok but no data where pounded
-        // statusrequest = Statusrequest.failure;
+        statusrequest = Statusrequest.failure;
       }
     }
-  }
-
-  @override
-  void onInit() {
-    getdata();
-    name = services.shared.getString('email')!;
-    super.onInit();
   }
 }
