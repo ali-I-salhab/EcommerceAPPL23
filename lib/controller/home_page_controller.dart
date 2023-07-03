@@ -1,5 +1,7 @@
+import 'package:ecommerceapp/core/constants/route.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/home_data.dart';
+import 'package:ecommerceapp/view/widget/home/listcategories.dart';
 import 'package:get/get.dart';
 
 import '../core/class/statusrequest.dart';
@@ -8,6 +10,7 @@ import '../core/functions/handlingdata.dart';
 abstract class HomepageController extends GetxController {
   initiadata();
   getdata();
+  gotoitemspage(int selectedcat, List categories);
 }
 
 class HomepageControllerImp extends HomepageController {
@@ -49,5 +52,11 @@ class HomepageControllerImp extends HomepageController {
         statusrequest = Statusrequest.failure;
       }
     }
+  }
+
+  @override
+  gotoitemspage(int selectedcat, List categories) {
+    Get.toNamed(AppRoutes.items,
+        arguments: {"categories": categories, "selectedcat": selectedcat});
   }
 }

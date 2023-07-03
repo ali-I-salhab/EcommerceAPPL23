@@ -27,6 +27,13 @@ class ListCategories extends GetView<HomepageControllerImp> {
             // print(
             //     "${Applink.categories}/${controller.categories[0]["categories_image"]}");
             return Categories(
+              ontap: () {
+                print("0000000000000000000000000000");
+                print(index);
+                print(controller.categories);
+
+                controller.gotoitemspage(index, controller.categories);
+              },
               categoriesModel:
                   CategoriesModel.fromJson(controller.categories[index]),
             );
@@ -36,8 +43,11 @@ class ListCategories extends GetView<HomepageControllerImp> {
 }
 
 class Categories extends StatelessWidget {
+  final Function()? ontap;
+
   final CategoriesModel categoriesModel;
-  const Categories({super.key, required this.categoriesModel});
+  const Categories(
+      {super.key, required this.ontap, required this.categoriesModel});
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +58,21 @@ class Categories extends StatelessWidget {
         // color: AppColors.grey,
       ),
       height: 60,
-      child: Column(
-        children: [
-          SvgPicture.network(
-            color: AppColors.primarycolor,
-            "${Applink.categories}/${categoriesModel.categoriesImage}",
-            // "https://alisalhab.000webhostapp.com/ecommerceapp_backend/upload/categories/camera.svg",
+      child: InkWell(
+        onTap: ontap,
+        child: Column(
+          children: [
+            SvgPicture.network(
+              color: AppColors.primarycolor,
+              "${Applink.categories}/${categoriesModel.categoriesImage}",
+              // "https://alisalhab.000webhostapp.com/ecommerceapp_backend/upload/categories/camera.svg",
 
-            height: 50,
-            width: 50,
-          ),
-          Text('${categoriesModel.categoriesName}')
-        ],
+              height: 50,
+              width: 50,
+            ),
+            Text('${categoriesModel.categoriesName}')
+          ],
+        ),
       ),
     );
   }

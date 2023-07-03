@@ -1,6 +1,5 @@
 import 'package:ecommerceapp/controller/onboardingcontroller.dart';
 import 'package:ecommerceapp/core/constants/colors.dart';
-import 'package:ecommerceapp/view/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

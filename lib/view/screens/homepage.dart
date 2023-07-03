@@ -10,11 +10,8 @@ import 'package:ecommerceapp/view/widget/home/customtitle.dart';
 import 'package:ecommerceapp/view/widget/home/listcategories.dart';
 import 'package:ecommerceapp/view/widget/home/listitems.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../linkapi.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,42 +19,42 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomepageControllerImp());
     return WillPopScope(
-      onWillPop: alertexitpp,
-      child: Scaffold(body: GetBuilder<HomepageControllerImp>(
-        builder: (controller) {
-          return Handlingdataview(
-            statusrequest: controller.statusrequest,
-            widget: SafeArea(
-                child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-              child: ListView(
-                children: const [
-                  CustomAppBar(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  CustomCardHome(
-                    title: "summer Surprise",
-                    body: "30 % cashback",
-                  ),
-                  CustomTitle(
-                    title: 'categories',
-                  ),
-                  ListCategories(),
-                  CustomTitle(
-                    title: 'Special products for you ',
-                  ),
-                  ItemsList(),
-                  CustomTitle(
-                    title: 'offers',
-                  ),
-                  ItemsList(),
-                ],
-              ),
-            )),
-          );
-        },
-      )),
-    );
+        onWillPop: alertexitpp,
+        child: GetBuilder<HomepageControllerImp>(
+          builder: (controller) {
+            return Handlingdataview(
+              statusrequest: controller.statusrequest,
+              widget: SafeArea(
+                  child: Container(
+                margin:
+                    const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+                child: ListView(
+                  children: const [
+                    CustomAppBar(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CustomCardHome(
+                      title: "summer Surprise",
+                      body: "30 % cashback",
+                    ),
+                    CustomTitle(
+                      title: 'categories',
+                    ),
+                    ListCategories(),
+                    CustomTitle(
+                      title: 'Special products for you ',
+                    ),
+                    ItemsList(),
+                    CustomTitle(
+                      title: 'offers',
+                    ),
+                    ItemsList(),
+                  ],
+                ),
+              )),
+            );
+          },
+        ));
   }
 }

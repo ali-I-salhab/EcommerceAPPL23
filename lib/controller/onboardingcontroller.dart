@@ -1,11 +1,7 @@
-import 'dart:math';
-
-import 'package:ecommerceapp/view/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../core/constants/route.dart';
-import '../core/services/services.dart';
 import '../data/datasource/static/static.dart';
 
 abstract class OnboardingController extends GetxController {
@@ -15,13 +11,11 @@ abstract class OnboardingController extends GetxController {
 
 class OnboardingControllerImp extends OnboardingController {
   int currentpage = 0;
-  MyServices servicescontroller = Get.find<MyServices>();
   late PageController pagecontroller;
   @override
   next() {
     currentpage++;
     if (currentpage > onboardinglist.length - 1) {
-      servicescontroller.shared.setString('step', '1');
       Get.offAllNamed(AppRoutes.login);
     }
     pagecontroller.animateToPage(currentpage,

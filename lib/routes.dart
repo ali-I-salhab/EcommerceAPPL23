@@ -4,13 +4,14 @@ import 'package:ecommerceapp/view/screens/forgetpassword/forgetpassword.dart';
 import 'package:ecommerceapp/view/screens/forgetpassword/resetpassword.dart';
 import 'package:ecommerceapp/view/screens/auth/successsignup.dart';
 import 'package:ecommerceapp/view/screens/forgetpassword/verifycodeforgetpassword.dart';
-import 'package:ecommerceapp/view/screens/homepage.dart';
+
 import 'package:ecommerceapp/view/screens/homescreen.dart';
+import 'package:ecommerceapp/view/screens/items.dart';
 import 'package:ecommerceapp/view/screens/languagepage.dart';
 import 'package:ecommerceapp/view/screens/onboarding.dart';
 import 'package:ecommerceapp/view/screens/auth/login.dart';
 import 'package:ecommerceapp/view/screens/auth/signup.dart';
-import 'package:ecommerceapp/view/testview.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,4 +45,5 @@ List<GetPage<dynamic>>? getPages = [
       page: () => const VerifycodeForgetpassword()),
   GetPage(name: AppRoutes.resetpassword, page: () => const ResetPasswrd()),
   GetPage(name: AppRoutes.successsignup, page: () => const SuccessSignup()),
+  GetPage(name: AppRoutes.items, page: () => const ItemsPage()),
 ];
