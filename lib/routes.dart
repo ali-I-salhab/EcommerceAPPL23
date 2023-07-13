@@ -1,5 +1,11 @@
 import 'package:ecommerceapp/core/middleware/mymiddleware.dart';
 import 'package:ecommerceapp/test.dart';
+import 'package:ecommerceapp/view/address/add.dart';
+import 'package:ecommerceapp/view/address/addaddresssectiontwo.dart';
+import 'package:ecommerceapp/view/address/yandexmaptest.dart';
+import 'package:ecommerceapp/view/address/view.dart';
+import 'package:ecommerceapp/view/screens/cart.dart';
+import 'package:ecommerceapp/view/screens/favoritepage.dart';
 import 'package:ecommerceapp/view/screens/forgetpassword/forgetpassword.dart';
 import 'package:ecommerceapp/view/screens/forgetpassword/resetpassword.dart';
 import 'package:ecommerceapp/view/screens/auth/successsignup.dart';
@@ -11,6 +17,7 @@ import 'package:ecommerceapp/view/screens/languagepage.dart';
 import 'package:ecommerceapp/view/screens/onboarding.dart';
 import 'package:ecommerceapp/view/screens/auth/login.dart';
 import 'package:ecommerceapp/view/screens/auth/signup.dart';
+import 'package:ecommerceapp/view/screens/products_details.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,4 +53,12 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: AppRoutes.resetpassword, page: () => const ResetPasswrd()),
   GetPage(name: AppRoutes.successsignup, page: () => const SuccessSignup()),
   GetPage(name: AppRoutes.items, page: () => const ItemsPage()),
+  GetPage(name: AppRoutes.productdetails, page: () => const ProductDetails()),
+  GetPage(name: AppRoutes.favorite, page: () => const FavoritePage()),
+  GetPage(name: AppRoutes.cart, page: () => const Cart()),
+  // GetPage(name: AppRoutes.AddAdress, page: () => const MapControlsPage()),
+  GetPage(name: AppRoutes.AddressView, page: () => const AddressView()),
+  GetPage(name: AppRoutes.AddressAdd, page: () => const AddressAdd()),
+  GetPage(
+      name: AppRoutes.AddressSectionTwo, page: () => const AddressSectionTwo())
 ];

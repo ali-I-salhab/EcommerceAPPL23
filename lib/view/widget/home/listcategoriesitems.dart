@@ -1,10 +1,8 @@
-import 'package:ecommerceapp/controller/home_page_controller.dart';
-import 'package:ecommerceapp/controller/items_controller.dart';
+import 'package:ecommerceapp/controller/items/items_controller.dart';
 import 'package:ecommerceapp/core/constants/colors.dart';
+import 'package:ecommerceapp/core/functions/translatedatabase.dart';
 import 'package:ecommerceapp/data/model/categoriesmodel.dart';
-import 'package:ecommerceapp/linkapi.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class ListCategoriesItems extends GetView<ItemsControllerImp> {
@@ -29,9 +27,9 @@ class ListCategoriesItems extends GetView<ItemsControllerImp> {
             // print(
             //     "${Applink.categories}/${controller.categories[0]["categories_image"]}");
             return Categories(
-              // ontap: () {
-              //   controller.gotoitemspage(index, controller.categories);
-              // },
+              ontap: () {
+                controller.ontapcat(index);
+              },
               categoriesModel:
                   CategoriesModel.fromJson(controller.categories[index]),
               activecat: index,
@@ -44,8 +42,12 @@ class ListCategoriesItems extends GetView<ItemsControllerImp> {
 class Categories extends StatelessWidget {
   final CategoriesModel categoriesModel;
   final int activecat;
+  final void Function() ontap;
   const Categories(
-      {super.key, required this.categoriesModel, required this.activecat});
+      {super.key,
+      required this.categoriesModel,
+      required this.activecat,
+      required this.ontap});
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +60,11 @@ class Categories extends StatelessWidget {
         ),
         height: 20,
         child: InkWell(
-          onTap: () {
-            controller.ontapcat(activecat);
-          },
+          onTap: ontap,
           child: Column(
             children: [
               Text(
-                '${categoriesModel.categoriesName}',
+                '${translatedatabase(categoriesModel.categoriesNameAr, categoriesModel.categoriesName)}',
                 style: TextStyle(
                     fontSize: 15,
                     color: controller.selectedcat == activecat

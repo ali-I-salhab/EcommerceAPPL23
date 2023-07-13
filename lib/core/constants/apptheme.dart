@@ -2,6 +2,9 @@ import 'package:ecommerceapp/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 ThemeData appthemEN = ThemeData(
+    appBarTheme: AppBarTheme(color: AppColors.primarycolor),
+    floatingActionButtonTheme:
+        FloatingActionButtonThemeData(backgroundColor: AppColors.primarycolor),
     textTheme: const TextTheme(
         bodyMedium: TextStyle(
             fontSize: 16,

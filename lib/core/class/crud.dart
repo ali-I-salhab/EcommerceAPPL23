@@ -16,7 +16,9 @@ class Crud {
         if (response.statusCode == 200 || response.statusCode == 201) {
           //get response from server
 
-          print('----------------success---------------');
+          print(
+              '----------------success-----crud--- data passed to api-------');
+          print(response.body);
           print(data);
           Map responsebody = jsonDecode(response.body);
 

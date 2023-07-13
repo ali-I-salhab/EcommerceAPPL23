@@ -8,4 +8,14 @@ class AppRoutes {
   static const String successsignup = '/successsignup';
   static const String homepage = '/homepage';
   static const String items = '/items';
+  static const String productdetails = '/productdetails';
+  static const String favorite = '/favorite';
+  static const String cart = '/cart';
+  static const String AddressAdd = '/AddressAdd';
+  static const String AddressView = '/AddressView';
+  static const String AddressSectionTwo = '/AddressSectionTwo';
+
+  // AddAdress
+  // AddressSectionTwo
+  // AddressAdd
 }

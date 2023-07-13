@@ -16,7 +16,9 @@ class HomeScreen extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primarycolor,
-          onPressed: null,
+          onPressed: () {
+            controller.gotocartpage();
+          },
           child: Icon(Icons.shopping_basket_outlined),
         ),
         // backgroundColor: Colors.amber,
@@ -35,12 +37,14 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     controller.changepage(i);
                   },
-                  title: controller.titleappbar[i],
-                  icon: Icons.home);
+                  title: controller.titleappbar[i]['title'],
+                  icon: controller.titleappbar[i]['icon']);
             }
           })),
         ),
-        body: controller.widget[controller.currentpage],
+        body: Container(
+            margin: EdgeInsets.symmetric(horizontal: 7),
+            child: controller.widget[controller.currentpage]),
       );
     });
   }

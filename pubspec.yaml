@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cached_network_image: ^3.2.3
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   firebase_core: ^2.14.0
@@ -37,10 +38,16 @@ dependencies:
     sdk: flutter
   flutter_otp_text_field: ^1.1.1
   flutter_svg: ^0.23.0+1
+  geolocator: ^9.0.2
+  geocoding: ^2.1.0
   get: ^4.6.5
+  google_maps_flutter: ^2.3.1
+  hero_animation: ^1.0.0+3
   http: ^0.13.5
   lottie: ^2.3.2
   shared_preferences: ^2.1.2
+  yandex_mapkit: ^3.3.3
+  
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -64,10 +71,12 @@ flutter:
     - assets/images/onboardingthree.png
     - assets/images/logo.png
     - assets/images/logoapp.png
+    - assets/images/discount.png
     - assets/lotties/loading.json
     - assets/lotties/nointernetconnection.json
     - assets/lotties/serverfailure.json
     - assets/lotties/nodata.json
+    - assets/images/place.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

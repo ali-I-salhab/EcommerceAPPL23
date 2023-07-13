@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/controller/home_page_controller.dart';
 import 'package:ecommerceapp/core/constants/colors.dart';
+import 'package:ecommerceapp/core/functions/translatedatabase.dart';
 import 'package:ecommerceapp/data/model/categoriesmodel.dart';
 import 'package:ecommerceapp/linkapi.dart';
 import 'package:flutter/material.dart';
@@ -13,31 +14,36 @@ class ListCategories extends GetView<HomepageControllerImp> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      width: 100,
       height: 80,
-      child: ListView.separated(
-          separatorBuilder: (context, i) {
-            return const SizedBox(
-              width: 80,
-            );
-          },
-          scrollDirection: Axis.horizontal,
-          itemCount: controller.categories.length,
-          itemBuilder: (context, index) {
-            // print(
-            //     "${Applink.categories}/${controller.categories[0]["categories_image"]}");
-            return Categories(
-              ontap: () {
-                print("0000000000000000000000000000");
-                print(index);
-                print(controller.categories);
-
-                controller.gotoitemspage(index, controller.categories);
-              },
-              categoriesModel:
-                  CategoriesModel.fromJson(controller.categories[index]),
-            );
-          }),
+      child: Container(
+        child: ListView.separated(
+            separatorBuilder: (context, i) {
+              return const SizedBox(
+                width: 80,
+              );
+            },
+            scrollDirection: Axis.horizontal,
+            itemCount: controller.categories.length,
+            itemBuilder: (context, index) {
+              // print(
+              //     "${Applink.categories}/${controller.categories[0]["categories_image"]}");
+              return Categories(
+                ontap: () {
+                  print("0000000000000000000000000000");
+                  print(index);
+                  print(
+                      controller.categories[index]['categories_id'].toString());
+                  // int selectedcat, List categories, String catid
+                  // print(controller.categories);
+                  // print(controller.categories[index]['categories_id']);
+                  controller.gotoitemspage(index, controller.categories,
+                      controller.categories[index]['categories_id'].toString());
+                },
+                categoriesModel:
+                    CategoriesModel.fromJson(controller.categories[index]),
+              );
+            }),
+      ),
     );
   }
 }
@@ -70,7 +76,8 @@ class Categories extends StatelessWidget {
               height: 50,
               width: 50,
             ),
-            Text('${categoriesModel.categoriesName}')
+            Text(
+                '${translatedatabase(categoriesModel.categoriesNameAr, categoriesModel.categoriesName)}')
           ],
         ),
       ),

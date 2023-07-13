@@ -13,4 +13,11 @@ class HomeData {
     // print(response);
     return response.fold((l) => l, (r) => r);
   }
+
+  search(String query) async {
+    var response = await crud.postdata(Applink.search, {"query": query});
+
+    // print(response);
+    return response.fold((l) => l, (r) => r);
+  }
 }
