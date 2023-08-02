@@ -6,34 +6,39 @@ import '../../core/class/statusrequest.dart';
 import '../../core/functions/handlingdata.dart';
 
 abstract class Verifycodecontroller extends GetxController {
-  gotoresetpassword(var verifycode);
+  getverifycodestatus(var verifycode);
 }
 
 class VerifycodecontrollerImp extends Verifycodecontroller {
   late String verifycode;
   late String email;
-  late Statusrequest statusrequest;
+  Statusrequest statusrequest = Statusrequest.none;
   VerifyCodeData verifycodedata = VerifyCodeData(Get.find());
   @override
-  gotoresetpassword(var verifycode) async {
+  Future<String> getverifycodestatus(var verifycode) async {
     statusrequest = Statusrequest.loading;
     update();
     var response = await verifycodedata.postdata(email, verifycode);
-
+    print("response =================> $response");
     statusrequest = handlingdata(response);
 
     if (statusrequest == Statusrequest.success) {
-      if (response['status'] == 'success') {
-        Get.toNamed(AppRoutes.resetpassword, arguments: {"email": email});
+      if (response["status"] == "success") {
+        print("here response is $response");
+        // statusrequest = Statusrequest.success;
+
+        return "true";
         // data.addAll(response['data']);
       } else {
         Get.defaultDialog(title: "Error ", middleText: "wrong verify code");
         //here every thing ok but no data where pounded
         // statusrequest = Statusrequest.failure;
+        return "false";
       }
     }
 
     update();
+    return "ccc";
     // Get.toNamed(AppRoutes.resetpassword);
   }
 

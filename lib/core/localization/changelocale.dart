@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/core/functions/fcmconfig.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -48,6 +49,8 @@ class Localcontroller extends GetxController {
 
   @override
   void onInit() {
+    requestnotificationpermition();
+    fcmconfig();
     requestpermition();
     String language = myservices.shared.getString('lang').toString();
 

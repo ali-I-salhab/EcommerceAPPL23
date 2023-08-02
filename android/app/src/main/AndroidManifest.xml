@@ -4,6 +4,25 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
  
    <uses-permission android:name="android.permission.INTERNET"/> 
+  
+  <queries>
+  <intent>
+  <action android:name="android.intent.action.VIEW" />
+  <category android:name="android.intent.category.BROWSABLE" />
+  <data android:scheme="sms" />
+</intent>
+ <intent>
+  <action android:name="android.intent.action.VIEW" />
+  <category android:name="android.intent.category.BROWSABLE" />
+  <data android:scheme="tel" />
+</intent>
+
+  </queries>
+  
+  
+  
+  
+  
    <application
         android:label="ecommerceapp"
         android:name="${applicationName}"

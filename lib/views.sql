@@ -1,0 +1,2 @@
+-- cart view
+SELECT cart.*,items.*,COUNT(cart.cart_itemid) as countofitemincart,SUM(items.item_price-items.item_price*items.item_discount/100)  as priceofitemafterdiscount from cart INNER JOIN items ON items.item_id=cart.cart_itemid WHERE cart.cart_order=0 GROUP by cart.cart_itemid,cart.cart_userid,cart.cart_order;

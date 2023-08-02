@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/controller/auth/verifycodecontroller.dart';
 import 'package:ecommerceapp/core/constants/route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,8 +53,10 @@ class SignupcontrollerImp extends Signupcontroller {
       if (statusrequest == Statusrequest.success) {
         if (response['status'] == 'success') {
           // data.addAll(response['data']);
-          Get.offNamed(AppRoutes.login, arguments: {'email': email.text});
-          Get.snackbar('success', 'successfully registered try to login',
+          Get.toNamed(AppRoutes.verifycodeforgetpassword,
+              arguments: {'email': email.text});
+
+          Get.snackbar('success', 'enter verify code sended to :${email.text}',
               dismissDirection: DismissDirection.horizontal,
               duration: Duration(seconds: 3),
               backgroundColor: AppColors.primarycolor);

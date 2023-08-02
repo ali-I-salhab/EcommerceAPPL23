@@ -4,6 +4,7 @@ import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/home_data.dart';
 import 'package:ecommerceapp/data/model/itemsmodel.dart';
 import 'package:ecommerceapp/view/widget/home/listcategories.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -56,6 +57,7 @@ class HomepageControllerImp extends HomepageController {
   }
 
   void onInit() {
+    FirebaseMessaging.instance.subscribeToTopic("user");
     getdata();
     searchcontroller = TextEditingController();
 
@@ -72,8 +74,7 @@ class HomepageControllerImp extends HomepageController {
     statusrequest = Statusrequest.loading;
     update();
     var response = await homedata.postdata();
-    print("=================response $response");
-    update();
+    // print("=================response $response");
 
     statusrequest = handlingdata(response);
 
@@ -81,14 +82,18 @@ class HomepageControllerImp extends HomepageController {
       if (response['status'] == 'success') {
         categories.addAll(response['categories']);
         items.addAll(response['items']);
+        statusrequest = Statusrequest.success;
+        update();
       } else {
         Get.defaultDialog(
             title: "Error",
             middleText: "email not registered ... try to login ");
         //here every thing ok but no data where pounded
         statusrequest = Statusrequest.failure;
+        update();
       }
     }
+    update();
   }
 
   @override

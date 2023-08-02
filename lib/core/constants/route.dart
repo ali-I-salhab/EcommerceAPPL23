@@ -14,6 +14,10 @@ class AppRoutes {
   static const String AddressAdd = '/AddressAdd';
   static const String AddressView = '/AddressView';
   static const String AddressSectionTwo = '/AddressSectionTwo';
+  static const String Checkout = '/Checkout';
+  static const String archivedorder = '/archivedorder';
+  static const String pendingorder = '/pendingorder';
+  static const String OderDetails = '/OderDetails';
 
   // AddAdress
   // AddressSectionTwo

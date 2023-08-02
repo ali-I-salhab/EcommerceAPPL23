@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/core/constants/colors.dart';
 import 'package:ecommerceapp/core/constants/route.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,8 @@ class LogincontrollerImp extends Logincontroller {
   MyServices myServices = Get.find();
   @override
   login() async {
+    // print("login");
+    // print(email.text);
     if (formstatelogin.currentState!.validate()) {
       statusrequest = Statusrequest.loading;
       update();
@@ -35,18 +38,26 @@ class LogincontrollerImp extends Logincontroller {
 
       if (statusrequest == Statusrequest.success) {
         if (response['status'] == 'success') {
-          // data.addAll(response['data']);
           myServices.shared.setString('id', response['data']['user_id']);
           myServices.shared.setString('email', response['data']['user_email']);
           myServices.shared.setString('phone', response['data']['user_phone']);
           myServices.shared
               .setString('username', response['data']['user_name']);
           myServices.shared.setString('step', '2');
+          FirebaseMessaging.instance.subscribeToTopic("user");
+
+          FirebaseMessaging.instance
+              .subscribeToTopic("user${response['data']['user_id']}");
 
           Get.offAllNamed(AppRoutes.homepage);
         } else {
           Get.defaultDialog(
-              title: "Error ", middleText: "email or password not valid");
+              backgroundColor: AppColors.primarycolor,
+              title: "Error ",
+              middleTextStyle: TextStyle(color: Colors.white, fontSize: 15),
+              titleStyle: TextStyle(color: Colors.white, fontSize: 25),
+              middleText:
+                  "email or password not valid ,Dont have Account try to signup");
           //here every thing ok but no data where pounded
           // statusrequest = Statusrequest.failure;
         }

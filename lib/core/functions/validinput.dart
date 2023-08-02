@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 validate(String val, int min, int max, String type) {
   if (type == 'email') {
-    if (!GetUtils.isEmail(val)) {
+    if (!GetUtils.isEmail(val.trim())) {
       return 'invalid email';
     }
   }

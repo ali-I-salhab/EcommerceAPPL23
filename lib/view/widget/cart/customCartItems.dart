@@ -38,9 +38,14 @@ class CustomcartItems extends StatelessWidget {
             Container(
               child: Column(
                 children: [
-                  Text(
-                    "$itemname",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  Container(
+                    width: 200,
+                    child: Text(
+                      "$itemname",
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   Text("$itemprice \$",
                       style: TextStyle(

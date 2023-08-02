@@ -42,11 +42,10 @@ class AddAddresscontroller extends GetxController {
     update();
   }
 
-  gotoaddaddressdetailspage() {
-    print(lat);
-    print(long);
+  gotoaddaddressdetailspage() async {
     Get.toNamed(AppRoutes.AddressSectionTwo,
         arguments: {"lat": lat, "long": long});
+    print(lat);
   }
 
   onmaptabed(Point p) {
@@ -61,5 +60,15 @@ class AddAddresscontroller extends GetxController {
 
     mapObjects.add(placemark);
     update();
+  }
+
+  @override
+  void onInit() async {
+    Position pos = await Geolocator.getCurrentPosition();
+    lat = pos.latitude.toString();
+    long = pos.longitude.toString();
+
+    // TODO: implement onInit
+    super.onInit();
   }
 }

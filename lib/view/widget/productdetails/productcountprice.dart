@@ -4,11 +4,13 @@ class ProductCountPrice extends StatelessWidget {
   final void Function()? onPressedminus;
   final void Function()? onPressedplus;
   final String number;
+  final String price;
   const ProductCountPrice(
       {super.key,
       this.onPressedminus,
       this.onPressedplus,
-      required this.number});
+      required this.number,
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class ProductCountPrice extends StatelessWidget {
                 child: Text(
               number,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20, fontFamily: 'cairo'),
             )),
           ),
           IconButton(
@@ -45,11 +47,11 @@ class ProductCountPrice extends StatelessWidget {
               )),
           const Spacer(),
           Text(
-            "12 \$",
-            style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                  color: Colors.red,
-                  fontSize: 30,
-                ),
+            "${price} \$",
+            style: Theme.of(context)
+                .textTheme
+                .displayLarge!
+                .copyWith(color: Colors.red, fontSize: 30, fontFamily: 'cairo'),
           )
         ],
       ),

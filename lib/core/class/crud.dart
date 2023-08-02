@@ -10,6 +10,8 @@ class Crud {
   Future<Either<Statusrequest, Map>> postdata(String url, Map data) async {
     try {
       if (await checkinternetstatus()) {
+        print("good internet connection the passed data is ");
+        print(data);
         // internet connection
         var response = await http.post(Uri.parse(url), body: data);
 
@@ -17,7 +19,7 @@ class Crud {
           //get response from server
 
           print(
-              '----------------success-----crud--- data passed to api-------');
+              '-------response code 200 or 201---------success-----crud--- data passed to api-------');
           print(response.body);
           print(data);
           Map responsebody = jsonDecode(response.body);
@@ -32,6 +34,7 @@ class Crud {
         return const Left(Statusrequest.offlinefailure);
       }
     } catch (e) {
+      print(e);
       return const Left(Statusrequest.serverexception);
     }
   }

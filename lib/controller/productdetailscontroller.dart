@@ -22,6 +22,8 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   ];
   @override
   void onInit() {
+    print("init products contrller ============>");
+
     initialdata();
     super.onInit();
   }
@@ -40,11 +42,13 @@ class ProductDetailsControllerImp extends ProductDetailsController {
 
   @override
   initialdata() async {
-    print("dddddddddddddddddddddddddd");
+    count = 0;
     statusrequest = Statusrequest.loading;
 
     itemmodel = Get.arguments['productdetails'];
-    count = int.parse(await cartcontroller.itemcount(itemmodel.itemId!));
+
+    count = await cartcontroller.itemcount(itemmodel.itemId.toString());
+
     statusrequest = Statusrequest.success;
     update();
   }

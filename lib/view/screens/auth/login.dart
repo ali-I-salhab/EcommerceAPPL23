@@ -60,6 +60,7 @@ class Login extends StatelessWidget {
                               CustomTextFormField(
                                 isnumeric: false,
                                 valid: (val) {
+                                  print(val);
                                   return validate(
                                       val.toString(), 10, 100, 'email');
                                 },

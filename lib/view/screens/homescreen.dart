@@ -13,39 +13,46 @@ class HomeScreen extends StatelessWidget {
     return GetBuilder<HomeScreenControllerImp>(builder: (controller) {
       bool val = true;
       return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.primarycolor,
-          onPressed: () {
-            controller.gotocartpage();
-          },
-          child: Icon(Icons.shopping_basket_outlined),
-        ),
-        // backgroundColor: Colors.amber,
-        bottomNavigationBar: BottomAppBar(
-          shape: CircularNotchedRectangle(),
-          notchMargin: 10,
-          child: Row(
-              children: List.generate(controller.widget.length + 1, (index) {
-            int i = index > 2 ? index - 1 : index;
-            if (i == 2 && val) {
-              val = false;
-              return Spacer();
-            } else {
-              return CustomAppBarButton(
-                  isactive: controller.currentpage == i ? true : false,
-                  onPressed: () {
-                    controller.changepage(i);
-                  },
-                  title: controller.titleappbar[i]['title'],
-                  icon: controller.titleappbar[i]['icon']);
-            }
-          })),
-        ),
-        body: Container(
-            margin: EdgeInsets.symmetric(horizontal: 7),
-            child: controller.widget[controller.currentpage]),
-      );
+          backgroundColor: Colors.grey[300],
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: AppColors.primarycolor,
+            onPressed: () {
+              controller.gotocartpage();
+            },
+            child: Icon(Icons.shopping_basket_outlined),
+          ),
+          // backgroundColor: Colors.amber,
+          bottomNavigationBar: BottomAppBar(
+            shape: CircularNotchedRectangle(),
+            notchMargin: 10,
+            child: Row(
+                children: List.generate(controller.widget.length + 1, (index) {
+              int i = index > 2 ? index - 1 : index;
+              if (i == 2 && val) {
+                val = false;
+                return Spacer();
+              } else {
+                return CustomAppBarButton(
+                    isactive: controller.currentpage == i ? true : false,
+                    onPressed: () {
+                      controller.changepage(i);
+                    },
+                    title: controller.titleappbar[i]['title'],
+                    icon: controller.titleappbar[i]['icon']);
+              }
+            })),
+          ),
+          body: WillPopScope(
+            onWillPop: () {
+              Get.defaultDialog();
+              return Future.value(true);
+            },
+            child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 7),
+                child: controller.widget[controller.currentpage]),
+          ));
     });
   }
 }

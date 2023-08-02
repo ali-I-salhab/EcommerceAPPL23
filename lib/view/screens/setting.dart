@@ -1,14 +1,19 @@
+import 'package:ecommerceapp/controller/settingcontroller.dart';
 import 'package:ecommerceapp/core/constants/colors.dart';
 import 'package:ecommerceapp/core/constants/imageassets.dart';
 import 'package:ecommerceapp/core/constants/route.dart';
+import 'package:ecommerceapp/core/services/services.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SettingController controller = Get.put(SettingController());
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -98,8 +103,10 @@ class SettingPage extends StatelessWidget {
                     title: Text("Notification"),
                     trailing: Switch(value: true, onChanged: (val) {}),
                   ),
-                  const ListTile(
-                    onTap: null,
+                  ListTile(
+                    onTap: () async {
+                      await controller.makePhoneCall('0934029909');
+                    },
                     title: Text("contact us"),
                     trailing: Icon(Icons.phone),
                   ),
@@ -115,8 +122,31 @@ class SettingPage extends StatelessWidget {
                     title: Text("Change adress"),
                     trailing: Icon(Icons.home_max_outlined),
                   ),
-                  const ListTile(
-                    onTap: null,
+                  ListTile(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.pendingorder);
+                    },
+                    title: Text("pending orders"),
+                    trailing: Icon(Icons.money_off_csred_sharp),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.archivedorder);
+                    },
+                    title: Text("archieve oreders"),
+                    trailing: Icon(Icons.terminal_outlined),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      MyServices ser = Get.find();
+                      FirebaseMessaging.instance.unsubscribeFromTopic("user");
+
+                      FirebaseMessaging.instance.unsubscribeFromTopic(
+                          "user${ser.shared.getString('id')}");
+
+                      ser.shared.clear();
+                      Get.offAllNamed(AppRoutes.login);
+                    },
                     title: Text("Logout"),
                     trailing: Icon(Icons.logout),
                   ),

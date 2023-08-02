@@ -69,11 +69,7 @@ class HomePage extends StatelessWidget {
                                 ),
                                 ListCategories(),
                                 CustomTitle(
-                                  title: 'Special products for you ',
-                                ),
-                                ItemsList(),
-                                CustomTitle(
-                                  title: 'offers',
+                                  title: 'Top Selling',
                                 ),
                                 ItemsList(),
                               ],

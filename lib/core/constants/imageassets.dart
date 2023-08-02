@@ -11,4 +11,6 @@ class ImageAssets {
   static String nodatalottie = 'assets/lotties/nodata.json';
   static String discount = 'assets/images/discount.png';
   static String place = 'assets/images/place.png';
+  static String recive = 'assets/images/recive.svg';
+  static String delivery = 'assets/images/delivery.svg';
 }

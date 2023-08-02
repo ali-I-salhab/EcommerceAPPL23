@@ -1,9 +1,11 @@
 import 'package:ecommerceapp/core/middleware/mymiddleware.dart';
 import 'package:ecommerceapp/test.dart';
-import 'package:ecommerceapp/view/address/add.dart';
-import 'package:ecommerceapp/view/address/addaddresssectiontwo.dart';
-import 'package:ecommerceapp/view/address/yandexmaptest.dart';
-import 'package:ecommerceapp/view/address/view.dart';
+import 'package:ecommerceapp/view/screens/address/add.dart';
+import 'package:ecommerceapp/view/screens/address/addaddresssectiontwo.dart';
+import 'package:ecommerceapp/view/screens/address/yandexmaptest.dart';
+import 'package:ecommerceapp/view/screens/address/view.dart';
+import 'package:ecommerceapp/view/screens/order/archievedorder.dart';
+import 'package:ecommerceapp/view/screens/order/checkout.dart';
 import 'package:ecommerceapp/view/screens/cart.dart';
 import 'package:ecommerceapp/view/screens/favoritepage.dart';
 import 'package:ecommerceapp/view/screens/forgetpassword/forgetpassword.dart';
@@ -17,6 +19,8 @@ import 'package:ecommerceapp/view/screens/languagepage.dart';
 import 'package:ecommerceapp/view/screens/onboarding.dart';
 import 'package:ecommerceapp/view/screens/auth/login.dart';
 import 'package:ecommerceapp/view/screens/auth/signup.dart';
+import 'package:ecommerceapp/view/screens/order/orderdetails.dart';
+import 'package:ecommerceapp/view/screens/order/pendingorders.dart';
 import 'package:ecommerceapp/view/screens/products_details.dart';
 
 import 'package:flutter/material.dart';
@@ -60,5 +64,10 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: AppRoutes.AddressView, page: () => const AddressView()),
   GetPage(name: AppRoutes.AddressAdd, page: () => const AddressAdd()),
   GetPage(
-      name: AppRoutes.AddressSectionTwo, page: () => const AddressSectionTwo())
+      name: AppRoutes.AddressSectionTwo, page: () => const AddressSectionTwo()),
+
+  GetPage(name: AppRoutes.Checkout, page: () => const Checkout()),
+  GetPage(name: AppRoutes.pendingorder, page: () => const Pendingorders()),
+  GetPage(name: AppRoutes.archivedorder, page: () => const Archievedorder()),
+  GetPage(name: AppRoutes.OderDetails, page: () => const OderDetails())
 ];

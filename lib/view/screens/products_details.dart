@@ -60,6 +60,7 @@ class ProductDetails extends StatelessWidget {
             return Handlingdataview(
                 statusrequest: controller.statusrequest,
                 widget: ProductCountPrice(
+                  price: controller.itemmodel.itemPrice!,
                   number: controller.count.toString(),
                   onPressedplus: () {
                     controller.onpressplus();
